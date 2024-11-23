@@ -1,8 +1,4 @@
-# rbe474x_p2
+# Project 2 for WPI's RBE474x
 P2 - Dramatic Data!
-
-[Get Started Here](./main_notebook.ipynb)
-
-
-PLEASE DO NOT MAKE A PUBLIC FORK OF THIS REPO
-
+`Starter code cloned from 
+[here](./main_notebook.ipynb)``
