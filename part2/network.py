@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 
 class Network(nn.Module):
-    def __init__(self, <add any argument>):
+    def __init__(self):
         super(Network, self).__init__()
         
     # define your network here!

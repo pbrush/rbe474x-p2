@@ -50,7 +50,7 @@ model = Network(3, 1)
 model = model.to(device)
 
 # LOSS FUNCTION AND OPTIMIZER
-optimizer = 
+optimizer = torch.optim.Adam(lr=LR)
 
 def shouldLog(batchcount=None):
     if batchcount==None:
@@ -159,7 +159,7 @@ torch.save(model.state_dict(), trainedMdlPath)
 # SCRIPT ---------------------------------------------------------------------------------
 epochs = 100
 
-lossFn = 
+lossFn = torch.nn.MSELoss()
 
 for eIndex in range(epochs):
     dp(f"Epoch {eIndex+1}\n")
