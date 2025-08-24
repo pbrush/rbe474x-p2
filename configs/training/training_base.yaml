@@ -1,0 +1,20 @@
+# conf/config.yaml
+defaults:
+  - _self_
+
+home_path: ${oc.env:HOME}
+job_id: run2
+model_name: windowseg
+ds_path: /home/pbrush/blender/flyingWindows/og/
+out_path: /home/pbrush/outputs/windowseg/
+
+# Derived paths
+job_folder: ${out_path}/${job_id}
+trained_mdl_path: ${job_folder}/parameters
+
+# Model parameters
+batch_size: 8
+lr: 1e-4
+log_batch_interval: 1
+log_wandb: true
+num_workers: 1

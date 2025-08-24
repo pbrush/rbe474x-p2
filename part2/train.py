@@ -8,7 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import shutil
 from torch.utils.data import Subset
-
+import hydra
+from omegaconf import DictConfig
 import wandb
 
 # CUSTOM
@@ -19,7 +20,7 @@ import pdb
 import utils
 
 # Load the parameters
-from loadParam import *
+# from loadParam import *
 
 if os.path.exists(JOB_FOLDER):
     shutil.rmtree(JOB_FOLDER)
@@ -169,3 +170,13 @@ for eIndex in range(epochs):
 
     trainedMdlPath = TRAINED_MDL_PATH + f"{eIndex}.pth"
     torch.save(model.state_dict(), trainedMdlPath)
+
+
+
+# MAIN LOOP (Before redoing the entirety of the top)
+@hydra.main(config_path="conf", config_name="config", version="1.3")
+def main(cfg: DictConfig):
+    print(cfg)
+    
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,7 @@
+# conf/config.yaml
+defaults:
+  - model: base_model
+  - training: base_training
+  - dataset: base_dataset
+  - logging: base_logging
+  - _self_

@@ -1,0 +1,16 @@
+# conf/model.yaml
+rpn:
+  _target_: __main__.RPN
+  in_channels: 256
+  out_channels: 512
+  n_anchors: 9
+
+roibox:
+  _target_: __main__.ROIBoxHead
+  in_channels: 256
+  n_classes: 20
+
+mask:
+  _target_: __main__.MaskHead
+  in_channels: 256
+  n_classes: 20
