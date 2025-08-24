@@ -1,0 +1,12 @@
+# conf/config.yaml
+defaults:
+  - epochs: 500
+  - batch_size: 8
+  - lr: 1e-4
+  - log_batch_interval: 1
+  - log_wandb: true
+  - num_workers: 1
+  - train_settings: svl # s = train, v = val, t = test
+  - train_split: 70.20.10
+  - model: cuda
+  - _self_

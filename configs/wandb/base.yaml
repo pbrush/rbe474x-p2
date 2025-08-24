@@ -1,0 +1,4 @@
+# conf/config.yaml
+defaults:
+  - _self_
+  - log: True

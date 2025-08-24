@@ -1,7 +1,21 @@
 # conf/config.yaml
 defaults:
-  - model: base_model
-  - training: base_training
-  - dataset: base_dataset
-  - logging: base_logging
+  - model: base
+  - training: base
+  - dataset: base
+  - wandbb: base
   - _self_
+
+session_params:
+  - run_name: window_seg_test
+  - model_name: window_segmentation
+  
+paths:
+  - home: $HOME/474x/rbe474x_p2
+  - dataset: ${home}/Dataset
+  - input: ${dataset}/Input_Data
+  - labels: ${dataset}/Labels
+  - instance_labels: ${dataset}/Instance_Labels
+  - output: ${home}/outputs/p2/${defaults.run_name}
+  - checkpoints: ${output}/model_checkpoints
+  - config_copy: ${output}/configs

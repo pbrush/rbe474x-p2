@@ -11,6 +11,7 @@ from torch.utils.data import Subset
 import hydra
 from omegaconf import DictConfig
 import wandb
+from tqdm import tqdm
 
 # CUSTOM
 from network import *
@@ -30,7 +31,12 @@ os.mkdir(TRAINED_MDL_PATH)
 
 # DATASET ---------------------------------------------------------------------------
 datatype = torch.float32
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.de
+# home_path: ${oc.env:HOME}
+# job_id: run2
+# model_name: windowseg
+# ds_path: /home/pbrush/blender/flyingWindows/og/
+# out_path: /home/pbrush/outputs/windowseg/vice('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('device', device)
 
 # Define the dataset size
@@ -77,6 +83,11 @@ wandb.init(
 def train(dataloader, model, loss_fn, optimizer, epochstep):
     
     # dp('train started')
+# home_path: ${oc.env:HOME}
+# job_id: run2
+# model_name: windowseg
+# ds_path: /home/pbrush/blender/flyingWindows/og/
+# out_path: /home/pbrush/outputs/windowseg/
     model.train()
     epochloss = 0
     for batchcount, (rgb, label) in enumerate(dataloader):
@@ -85,22 +96,11 @@ def train(dataloader, model, loss_fn, optimizer, epochstep):
         rgb = rgb.to(device)
         label = label.to(device)
         
-        optimizer.zero_grad()
-        
-        pred = model(rgb)
-        loss = loss_fn(pred, label)        
-        loss.backward()
-        optimizer.step()
-        
-        epochloss += loss.item()
-
-        wandb.log({
-            "epochstep": epochstep,
-            "batch/loss/train": loss.item(),
-                })
-            
-        if batchcount == 0: # only for the first batch every epoch
-            wandb_images = []
+# home_path: ${oc.env:HOME}
+# job_id: run2
+# model_name: windowseg
+# ds_path: /home/pbrush/blender/flyingWindows/og/
+# out_path: /home/pbrush/outputs/windowseg/ []
             for (pred_single, label_single, rgb_single) in zip(pred, label, rgb):
                 combined_image_np = CombineImages(pred_single, label_single, rgb_single)
 
@@ -171,6 +171,13 @@ for eIndex in range(epochs):
     trainedMdlPath = TRAINED_MDL_PATH + f"{eIndex}.pth"
     torch.save(model.state_dict(), trainedMdlPath)
 
+class Trainer:
+    def __init__(self, cfg):
+        self.cfg = cfg
+
+    def training_loop(self):
+        for epoch in tqdm(range(self.cfg.training.epochs)):
+            dp(f"Epoch {epoch+1}\n")
 
 
 # MAIN LOOP (Before redoing the entirety of the top)
